@@ -17,3 +17,5 @@ class WebLMAPIError(Exception):
        if self.status_code:
            return f"[{self.status_code}] {self.message}"
        return self.message
+   
+   
