@@ -4,9 +4,10 @@ from typing import Dict, List, Type, TypeVar
 from pydantic import BaseModel
 
 from ._exceptions import WebLMAPIError
+from ._response import ConvertResponse, ScrapeLinksResponse, ModelsResponse
+
 
 T = TypeVar('T', bound=BaseModel)
-
 
 class AsyncWebLMClient:
     """
@@ -136,7 +137,8 @@ class AsyncWebLMClient:
             "model_name": model_name
         }
         
-        return await self._make_request('POST', '/v1/convert', data=data)
+        response = await self._make_request('POST', '/v1/convert', data=data)
+        return ConvertResponse.model_validate(response)
 
     async def smart_convert(self, url: str, return_token_count: bool = False, model_name: str = "gemini-2.0-flash") -> Dict:
         """
@@ -162,7 +164,8 @@ class AsyncWebLMClient:
             "model_name": model_name
         }
         
-        return await self._make_request('POST', '/v1/smart-convert', data=data)
+        response = await self._make_request('POST', '/v1/smart-convert', data=data)
+        return ConvertResponse.model_validate(response)
 
     async def scrape_links(self, url: str, include_media: bool = False, domain_only: bool = True) -> Dict[str, List[str]]:
         """
@@ -188,7 +191,8 @@ class AsyncWebLMClient:
             "domain_only": domain_only
         }
         
-        return await self._make_request('POST', '/v1/scrape-links', data=data)
+        response = await self._make_request('POST', '/v1/scrape-links', data=data)
+        return ScrapeLinksResponse.model_validate(response)
 
     async def get_models(self) -> Dict[str, List[str]]:
         """
@@ -204,7 +208,8 @@ class AsyncWebLMClient:
                   ]
                 }
         """
-        return await self._make_request('GET', '/v1/models')
+        response = await self._make_request('GET', '/v1/models')
+        return ModelsResponse.model_validate(response)
     
     async def transform(self, url: str, model_class: Type[T]) -> T:
         """

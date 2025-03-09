@@ -1,5 +1,5 @@
 from pydantic import BaseModel, HttpUrl
-from typing import List
+from typing import List, Dict
 
 
 class ConvertResponse(BaseModel):
@@ -10,4 +10,7 @@ class ConvertResponse(BaseModel):
 
 class ScrapeLinksResponse(BaseModel):
     urls: List[HttpUrl]
+
+class ModelsResponse(BaseModel):
+    models: Dict[str, List[str]]
 
