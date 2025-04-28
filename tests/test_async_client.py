@@ -194,3 +194,25 @@ class TestAsyncWebLM:
 
         # Call close (should not raise)
         await self.client.close()
+
+    @pytest.mark.asyncio
+    async def test_context_manager(self, mock_aiohttp_session):
+        """Test using AsyncWebLM as an async context manager."""
+        # Setup the mocks
+        mock_session_class, mock_response_obj = mock_aiohttp_session
+        session_instance = mock_session_class.return_value
+        mock_response_obj.json = AsyncMock(return_value={
+            "markdown": "# Test",
+            "url": "https://example.com"
+        })
+        
+        # Use the client as a context manager
+        async with AsyncWebLM(api_key="test_api_key") as client:
+            # Perform an operation to create a session
+            result = await client.convert(url="https://example.com")
+            assert result.markdown == "# Test"
+            assert client._session is not None
+            assert not client._session.closed
+            
+        # After exiting the context, session.close() should have been called
+        session_instance.close.assert_called_once()

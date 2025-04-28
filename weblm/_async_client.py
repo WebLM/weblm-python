@@ -265,3 +265,23 @@ class AsyncWebLM:
         """
         if self._session and not self._session.closed:
             await self._session.close()
+
+    async def __aenter__(self):
+        """
+        Enter context manager - allows using the client with 'async with'.
+        
+        Returns:
+            AsyncWebLM: The client instance
+        """
+        return self
+        
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """
+        Exit context manager - ensures the session is closed properly.
+        
+        Args:
+            exc_type: Exception type if an exception was raised
+            exc_val: Exception value if an exception was raised
+            exc_tb: Exception traceback if an exception was raised
+        """
+        await self.close()
