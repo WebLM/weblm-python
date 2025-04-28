@@ -1,6 +1,6 @@
 # WebLM API Client
 
-A Python client library for interacting with the WebLM API, providing HTML to Markdown conversion and web content extraction capabilities.
+The official Python SDK for [WebLM](https://weblm.dev), providing HTML to Markdown conversion and web content extraction capabilities.
 
 ## Features
 
