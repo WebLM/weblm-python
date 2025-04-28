@@ -16,13 +16,13 @@ class AsyncWebLMClient:
     and link scraping using API key authentication.
     """
 
-    def __init__(self, api_key: str, base_url: str = "http://localhost:8000"):
+    def __init__(self, api_key: str, base_url: str = "https://api.weblm.dev"):
         """
         Initialize the async WebLM client.
 
         Args:
             api_key: API key for authentication
-            base_url: The base URL for the API (default: http://localhost:8000)
+            base_url: The base URL for the API (default: https://api.weblm.dev)
         """
         self.base_url = base_url.rstrip("/")
         self.api_key = api_key
