@@ -64,8 +64,6 @@ async def function and no async plugin installed
 
 Make sure you have installed `pytest-asyncio` and added the `@pytest.mark.asyncio` decorator to your async test functions.
 
-The tests for AsyncWebLM use a custom `AsyncContextManagerMock` class defined in conftest.py to properly mock async context managers used by aiohttp. This approach correctly handles the `async with` statements in the client code by implementing the `__aenter__` and `__aexit__` methods required for async context managers.
-
 ### URL Normalization
 
 When testing with URLs, be aware that Pydantic's `HttpUrl` type normalizes URLs by adding a trailing slash if one isn't present. This means that if you compare:
