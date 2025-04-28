@@ -111,11 +111,10 @@ print(f"Categories: {', '.join(article.categories)}")
 #### Initialization
 
 ```python
-client = WebLM(api_key="your_api_key", base_url="http://localhost:8000")
+client = WebLM(api_key="your_api_key")
 ```
 
 - `api_key`: Your API key for authentication
-- `base_url`: Optional API base URL (default: "http://localhost:8000")
 
 #### Methods
 
