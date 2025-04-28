@@ -10,7 +10,7 @@ from ._response import ConvertResponse, ModelsResponse, ScrapeLinksResponse
 T = TypeVar("T", bound=BaseModel)
 
 
-class WebLMClient:
+class WebLM:
     """
     Client for interacting with the WebLM API for HTML to Markdown conversion
     and link scraping using API key authentication.

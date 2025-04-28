@@ -14,7 +14,7 @@ A Python client library for interacting with the WebLM API, providing HTML to Ma
 ## Installation
 
 ```bash
-pip install weblm-client
+pip install weblm
 ```
 
 ## Quick Start
@@ -22,10 +22,10 @@ pip install weblm-client
 ### Basic Usage
 
 ```python
-from weblm import WebLMClient
+from weblm import WebLM
 
 # Initialize with your API key
-client = WebLMClient(api_key="your_api_key")
+client = WebLM(api_key="your_api_key")
 
 # Convert HTML to Markdown
 result = client.convert(url="https://example.com")
@@ -44,11 +44,11 @@ print(links["urls"])
 
 ```python
 import asyncio
-from weblm import AsyncWebLMClient
+from weblm import AsyncWebLM
 
 async def main():
     # Initialize with your API key
-    client = AsyncWebLMClient(api_key="your_api_key")
+    client = AsyncWebLM(api_key="your_api_key")
 
     try:
         # Convert HTML to Markdown
@@ -79,7 +79,7 @@ Define a Pydantic model and transform web content directly into structured data:
 ```python
 from pydantic import BaseModel
 from typing import List, Optional
-from weblm import WebLMClient
+from weblm import WebLM
 
 # Define your data model
 class Article(BaseModel):
@@ -89,7 +89,7 @@ class Article(BaseModel):
     categories: List[str] = []
 
 # Initialize client
-client = WebLMClient(api_key="your_api_key")
+client = WebLM(api_key="your_api_key")
 
 # Transform web content into your model
 article = client.transform(
@@ -106,12 +106,12 @@ print(f"Categories: {', '.join(article.categories)}")
 
 ## API Reference
 
-### WebLMClient
+### WebLM
 
 #### Initialization
 
 ```python
-client = WebLMClient(api_key="your_api_key", base_url="http://localhost:8000")
+client = WebLM(api_key="your_api_key", base_url="http://localhost:8000")
 ```
 
 - `api_key`: Your API key for authentication
@@ -125,18 +125,18 @@ client = WebLMClient(api_key="your_api_key", base_url="http://localhost:8000")
 - `get_models()`: Get list of available language models
 - `transform(url, model_class)`: Transform web content into a Pydantic model
 
-### AsyncWebLMClient
+### AsyncWebLM
 
-Provides the same methods as `WebLMClient` but with asynchronous support. Additionally includes:
+Provides the same methods as `WebLM` but with asynchronous support. Additionally includes:
 
 - `close()`: Close the underlying HTTP session (should be called when done)
 
 ### Error Handling
 
 ```python
-from weblm import WebLMClient, WebLMAPIError
+from weblm import WebLM, WebLMAPIError
 
-client = WebLMClient(api_key="your_api_key")
+client = WebLM(api_key="your_api_key")
 
 try:
     result = client.convert(url="https://example.com")
@@ -147,11 +147,11 @@ except WebLMAPIError as e:
 
 ## Advanced Usage
 
-### Concurrent Processing with AsyncWebLMClient
+### Concurrent Processing with AsyncWebLM
 
 ```python
 import asyncio
-from weblm import AsyncWebLMClient
+from weblm import AsyncWebLM
 from pydantic import BaseModel
 from typing import List
 
@@ -160,7 +160,7 @@ class ArticlePreview(BaseModel):
     summary: str
 
 async def process_multiple_urls(urls):
-    client = AsyncWebLMClient(api_key="your_api_key")
+    client = AsyncWebLM(api_key="your_api_key")
 
     try:
         # Create tasks for all URLs
