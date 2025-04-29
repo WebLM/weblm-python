@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "weblm"
+name = "weblm-python"
 dynamic = ["version"]
 description = "The official Python SDK for WebLM, providing HTML to Markdown conversion and web content extraction capabilities"
 readme = "README.md"

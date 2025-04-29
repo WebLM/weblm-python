@@ -16,13 +16,13 @@ The official Python SDK for [WebLM](https://weblm.dev), providing HTML to Markdo
 You can install the WebLM Python SDK directly from PyPI:
 
 ```bash
-pip install weblm
+pip install weblm-python
 ```
 
 For development, including testing and linting tools:
 
 ```bash
-pip install weblm[dev]
+pip install weblm-python[dev]
 ```
 
 Or install the latest development version from GitHub:
